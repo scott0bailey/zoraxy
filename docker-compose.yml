@@ -1,0 +1,15 @@
+  # Zoraxy is a new kid in reverse-proxy world written in Go
+  zoraxy:
+    image: zoraxydocker/zoraxy:latest
+    container_name: zoraxy
+    networks:
+      - mybridge
+    ports:
+      - 80:80
+      - 443:443
+      - 8000:8000/tcp # Admin interface
+    volumes:
+      - ./zoraxy:/opt/zoraxy/config/
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    mem_limit: 512m
+    restart: unless-stopped
