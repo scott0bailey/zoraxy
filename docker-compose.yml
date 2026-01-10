@@ -2,8 +2,6 @@
   zoraxy:
     image: zoraxydocker/zoraxy:latest
     container_name: zoraxy
-    networks:
-      - mybridge
     ports:
       - 80:80
       - 443:443
