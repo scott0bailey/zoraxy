@@ -1,13 +1,21 @@
-  # Zoraxy is a new kid in reverse-proxy world written in Go
+  # -------------------------------------------------------------
+  # Reverse Proxy (Zoraxy) – Lightweight service
+  # -------------------------------------------------------------
   zoraxy:
     image: zoraxydocker/zoraxy:latest
     container_name: zoraxy
     ports:
       - 80:80
       - 443:443
-      - 8000:8000/tcp # Admin interface
+      - 8000:8000/tcp   # Admin interface
     volumes:
-      - ./zoraxy:/opt/zoraxy/config/
+      - ./zoraxy/config:/opt/zoraxy/config/
+      - ./zoraxy/plugin:/opt/zoraxy/plugin/
       - /var/run/docker.sock:/var/run/docker.sock:ro
-    mem_limit: 512m
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      DOCKER: "true"
+      MDNS: "false"
+      TZ: "TZ=${TZ}"
     restart: unless-stopped
