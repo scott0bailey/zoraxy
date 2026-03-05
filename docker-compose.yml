@@ -8,6 +8,7 @@
       - 80:80
       - 443:443
       - 8000:8000/tcp   # Admin interface
+#       - "127.0.0.1:8000:8000" # Management Portal (change for security if needed)      
     volumes:
       - ./zoraxy/config:/opt/zoraxy/config/
       - ./zoraxy/plugin:/opt/zoraxy/plugin/
